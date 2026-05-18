@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { CreateSongDto } from './create-song.dto';
+import { CreateSongDto } from './dto/create-song.dto';
 
 @Injectable()
 export class SongsService {
   private songs: CreateSongDto[] = [];
-
+  private idCounter = 1;
   create(song: CreateSongDto) {
+    song.id = this.idCounter++;
     this.songs.push(song);
     return this.songs;
   }
